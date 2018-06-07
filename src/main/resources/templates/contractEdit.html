@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Contracts</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}" src="js/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}" src="js/bootstrap.min.js"></script>
+    
+    <!-- include the jQuery validation plugin -->
+<script type="text/javascript" th:src="@{/js/jquery.validate.min.js}" src="js/jquery.validate.min.js"></script>
+<!-- add the required customizations for Bootstrap -->
+<script type="text/javascript" th:src="@{/js/jquery.validate.bootstrap.js}" src="js/jquery.validate.bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+
+        <h1>New Contract</h1>
+
+        <form id="contractForm"class="form-group" action="/contractEdit" th:action="@{/contractEdit}" method="post">
+            <input th:type="hidden" name="id" th:field="${contract.contractID}" />
+            <input th:type="hidden" name="time" th:field="${contract.contractActivationDate}" />
+            <div class="form-group">
+                <label for="name">Contract Name</label>
+                <input type="text" class="form-control" id="name" th:field="${contract.name}" />
+                <label for="bno">Business Number</label>
+                <input type="text" class="form-control" id="bno" th:field="${contract.businessNumber}"/>
+                <label for="amount">Amount</label>
+                <input type="text" class="form-control" id="amount" th:field="${contract.amountRequest}"/>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <a href="#" th:href="@{/}" class="btn btn-danger" role="button">Cancel</a>
+        </form>
+
+    </div>
+    
+    <!-- define validation rules and activate validation -->
+    <script>
+         $(document).ready(function () {
+             $("#contractForm").validate({
+                 rules: {
+                     'name': {
+                         required: true,
+                     },
+                     'businessNumber': {
+                         required: true,
+                         minlength: 8,
+                         maxlength: 10000
+                     },
+                     'amountRequest' :
+						{
+                    	 required: true
+                    	 }                 },
+                 messages: {
+                	 name: {
+                         required: "Please enter the Name!"
+                     },
+                     businessNumber: {
+                    	 required: "Please enter the BusinessNumber!"
+                     },
+                     amountRequest : {
+                    	 required: "Please enter the Amount!"
+                     }
+                 }
+             });
+         });
+    </script>
+
+</body>
+</html>

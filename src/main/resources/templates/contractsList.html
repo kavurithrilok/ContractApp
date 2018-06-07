@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Contracts</title>
+
+    <link rel="stylesheet" type="text/css" media="all" href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+    <script type="text/javascript" th:src="@{/js/jquery.min.js}" src="js/jquery.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}" src="js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+
+        <h1>Approved Contracts</h1>
+
+        <p>
+            <a href="/contractEdit" th:href="@{/contractEdit}">Create Contract</a>
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ContractId</th>
+                    <th>Name</th>
+                    <th>Business Number</th>
+                     <th>Contract Activation Date</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="contracts : ${contractsList}">
+                    <td th:text="${contracts.contractID}"></td>
+                    <td th:text="${contracts.name}"></td>
+                     <td th:text="${contracts.businessNumber}"></td>
+                      <td th:text="${contracts.contractActivationDate}"></td>
+                      <td th:text="${contracts.amountRequest}"></td>
+                    <td>
+                        <a href="/contractsEdit/1" th:href="@{/contractEdit/__${contracts.contractID}__}">Edit  |   </a>
+                        <a href="/contractsDelete/1" th:href="@{/contractDelete/__${contracts.contractID}__}">   Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

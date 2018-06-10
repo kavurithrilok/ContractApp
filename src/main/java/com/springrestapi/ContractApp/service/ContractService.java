@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.springrestapi.ContractApp.domain.Contract;
 
 public interface ContractService {
-	List<Contract> findAll();
+	List<Contract> findStatusApproved();
 
 	Optional<Contract> findOne(Long id);
 

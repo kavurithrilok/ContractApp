@@ -14,6 +14,18 @@ public class Contract {
 		super();
 	}
 
+	public Contract(Long contractID, @NotNull String name, String status,
+			@NotNull @Size(min = 8, max = 10000, message = "Error: minimum size is 8 and maximum is 10000") String businessNumber,
+			String contractActivationDate, Double amountRequest) {
+		super();
+		this.contractID = contractID;
+		this.name = name;
+		this.status = status;
+		this.businessNumber = businessNumber;
+		this.contractActivationDate = contractActivationDate;
+		this.amountRequest = amountRequest;
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long contractID;

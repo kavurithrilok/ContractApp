@@ -17,7 +17,7 @@ public class ContractServiceImpl implements ContractService {
 	ContractRepository contractRepository;
 
 	@Override
-	public List<Contract> findAll() {
+	public List<Contract> findStatusApproved() {
 		return contractRepository.findStatusApproved("Approved");
 	}
 
@@ -28,7 +28,7 @@ public class ContractServiceImpl implements ContractService {
 
 	@Override
 	public Contract saveContract(Contract contract) {
-		return contractRepository.saveAndFlush(contract);
+		return contractRepository.save(contract);
 	}
 
 	@Override

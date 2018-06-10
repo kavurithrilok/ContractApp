@@ -30,7 +30,7 @@ public class ContractController {
 	@RequestMapping(value = "/")
 	public String notesList(Model model) {
 		LOGGER.debug("Enter into Default mapping!!!");
-		List<Contract> contractList = contractService.findAll();
+		List<Contract> contractList = contractService.findStatusApproved();
 		model.addAttribute("contractsList", contractList);
 		return "contractsList";
 	}
@@ -62,14 +62,14 @@ public class ContractController {
 			contract.setStatus("Approved");
 		}
 		contractService.saveContract(contract);
-		model.addAttribute("contractsList", contractService.findAll());
+		model.addAttribute("contractsList", contractService.findStatusApproved());
 		return "contractsList";
 	}
 
 	@RequestMapping(value = "/contractDelete/{id}", method = RequestMethod.GET)
 	public String contractDelete(Model model, @PathVariable(required = true, name = "id") Long id) {
 		contractService.deleteContract(id);
-		List<Contract> contractList = contractService.findAll();
+		List<Contract> contractList = contractService.findStatusApproved();
 		model.addAttribute("contractsList",contractList);
 		return "contractsList";
 	}
